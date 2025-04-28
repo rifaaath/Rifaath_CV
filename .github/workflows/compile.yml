@@ -3,13 +3,12 @@ name: LaTex Compiler to PDF
 on: 
   push:
     branches: [ main ]
-    paths: 'docs/**'
   workflow_dispatch:
 
 env:
-  FILE_PATH: docs/
-  FILE_NAME: resume
-  RESULT_NAME: converted_resume
+  FILE_PATH: /
+  FILE_NAME: resume2
+  RESULT_NAME: Rifaath_CV
 
 jobs:
   build_latex:
