@@ -1,0 +1,45 @@
+name: Build LaTeX document
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.tex'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**.tex'
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: resume2.tex
+          # If your main file has a different name, change it above
+          # You can also set multiple files: "file1.tex file2.tex"
+          
+          # Uncomment and modify the following if you need specific LaTeX packages
+          # args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+          # extra_system_packages: "py-pygments"
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: PDF
+          path: Rifaath_CV.pdf
+          # Make sure this matches the output filename of your LaTeX document
+
+      # Optional: Release the PDF when tagging
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: Rifaath_CV.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
