@@ -1,4 +1,4 @@
-name: Build and Commit LaTeX PDF
+name: Build and Push LaTeX PDF to GitHub Pages Repo
 
 on:
   push:
@@ -12,32 +12,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_latex:
+  build_and_push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout LaTeX repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false  # Important for using a personal token later
 
-      - name: Set up Git user
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-      - name: Compile LaTeX document
+      - name: Compile LaTeX to PDF
         uses: xu-cheng/latex-action@v2
         with:
           root_file: resume2.tex
 
-      - name: Rename output
+      - name: Rename PDF
         run: mv resume2.pdf Rifaath_CV.pdf
 
-      - name: Commit and push PDF to main
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Clone target repo
         run: |
-          git add Rifaath_CV.pdf
-          git commit -m "Auto-compiled Rifaath_CV.pdf" || echo "No changes to commit"
-          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }} HEAD:main
+          git clone https://x-access-token:${{ secrets.TARGET_REPO_TOKEN }}@github.com/rifaaath/rifaaath.github.io.git target-repo
+          
+      - name: Copy PDF to target repo
+        run: |
+          mkdir -p target-repo/assets/files
+          cp Rifaath_CV.pdf target-repo/assets/files/
+
+      - name: Commit and push to target repo
+        run: |
+          cd target-repo
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add assets/files/Rifaath_CV.pdf
+          git commit -m "Update CV PDF from main repo 🚀" || echo "No changes to commit"
+          git push origin main
