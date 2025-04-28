@@ -33,7 +33,7 @@ jobs:
           compiler: xelatex
           
       - name: Upload artifact as workflow attachments
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: result
           path: ${{env.FILE_PATH}}${{env.FILE_NAME}}.pdf
