@@ -1,68 +1,32 @@
-name: Compile LaTeX Document (GitHub Runner)
+name: LateX to PDF
 
 on:
   push:
-    branches: [ main ] # Trigger on pushes to the main branch
+    branches: 
+      - master
+      - develop
+    tags:
+       - '*'
   pull_request:
-    branches: [ main ] # Trigger on pull requests targeting the main branch
-  workflow_dispatch:     # Allow manual triggering from the Actions tab
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build_latex:
-    # Use a standard GitHub-hosted runner
-    runs-on: ubuntu-latest # You can also use macos-latest or windows-latest if needed
-
+    runs-on: ubuntu-latest
     steps:
-      # 1. Check out the repository code
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      # 2. Set up TeX Live using a dedicated action
-      # This action handles downloading and caching TeX Live components.
-      # Choose a 'scheme' (basic, small, medium, full, etc.)
-      # 'small' is a good balance for common documents. 'full' is comprehensive but slower.
-      # Use the 'packages' input to list specific CTAN packages needed beyond the scheme.
-      - name: Set up TeX Live
-        uses: xu-cheng/texlive-action@v2
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: latex2pdf
+        id: compile-latex-document
+        uses: thomas-chauvet/latex2pdf-action@1.0.5
         with:
-          # --- Choose ONE scheme ---
-          # scheme: basic    # Minimal, fastest install, likely needs more packages listed below
-          scheme: small # Good starting point
-          # scheme: medium   # More comprehensive
-          # scheme: full     # Very comprehensive, but SLOWEST install time
-
-          # --- Add specific packages needed by your document ---
-          # List packages separated by spaces. latexmk is highly recommended.
-          packages: > # Use > for multi-line strings if needed
-            latexmk
-            amsmath
-            graphicx
-            geometry
-            biblatex # Example if you use biblatex
-            # Add other CTAN package names your document requires here
-
-      # 3. Compile the LaTeX document
-      # Using latexmk is recommended as it handles multiple runs and dependencies (like BibTeX/Biber) automatically.
-      - name: Compile LaTeX document
-        run: |
-          # Replace 'main.tex' with the name of your main LaTeX file
-          # The -pdf flag tells latexmk to generate a PDF
-          # latexmk will automatically run pdflatex, bibtex/biber, etc. as needed
-          latexmk -pdf resume2.tex
-
-          # --- Alternative: Manual pdflatex calls (if not using latexmk) ---
-          # echo "Compiling main.tex..."
-          # pdflatex -interaction=nonstopmode main.tex
-          # # Run bibtex/biber if needed (e.g., bibtex main)
-          # echo "Running pdflatex again for references/TOC..."
-          # pdflatex -interaction=nonstopmode main.tex
-          # pdflatex -interaction=nonstopmode main.tex
-
-      # 4. Upload the generated PDF as an artifact
-      # This makes the PDF downloadable from the workflow run summary page.
-      - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
+          output_dir: output
+          main_latex_file: resume2.tex
+          ctan_packages: amsmath amsfonts lua-uni-algos
+      - name: Upload PDF to the workflow tab
+        id: upload-workflow-tab
+        uses: actions/upload-artifact@v2
         with:
-          name: compiled-pdf # Name of the artifact bundle
-          path: Rifaath_CV.pdf    # Path to the file to upload (adjust if your output file is named differently)
-          if-no-files-found: error # Optional: Fail step if PDF is not found
+          name: output
+          path: Rifaath_CV.pdf
