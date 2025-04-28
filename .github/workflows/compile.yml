@@ -2,7 +2,7 @@ name: Release Compiled PDF
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
           root_file: resume2.tex
 
       - name: Release
-        uses: softprops/action-gh-release@v4
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.NOW }}
           files: ./Rifaath_CV.pdf
