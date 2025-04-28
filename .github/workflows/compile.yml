@@ -23,7 +23,7 @@ jobs:
           root_file: resume2.tex
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v4
         with:
           tag_name: ${{ env.NOW }}
           files: ./Rifaath_CV.pdf
