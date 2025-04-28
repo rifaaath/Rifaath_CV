@@ -1,0 +1,452 @@
+%-------------------------
+% Resume in Latex
+% Author : Rifaath Ameen
+% License : MIT
+%------------------------
+
+%--- Packages and Functions ----
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+%\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+\usepackage[most]{tcolorbox}
+\usepackage[english]{babel}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Set the margins
+%\addtolength{\oddsidemargin}{-0.5in}
+%\addtolength{\evensidemargin}{-0.5in}
+%\addtolength{\textwidth}{1in}
+%\addtolength{\topmargin}{-.5in}
+%\addtolength{\textheight}{1.0in}
+
+% Set the margins
+\geometry{left=0.85cm, top=0.8cm, right=0.85cm, bottom=0.2cm}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+
+\newcommand{\resumeItem}[1]{
+  \item\small{\vspace{-2pt}}
+}
+
+\newcommand{\resumeHeading}[4]{
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeProject}[2]{
+\vspace{0.5mm}\item[]
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \hspace{-3mm}{#1}: & \hfill{\footnotesize{ #2}} \vspace{-0.5mm}\\ 
+    \end{tabular*}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\newcommand{\resumeLeadership}[3]{
+  \item
+      \textbf{#1}\\#2 \\
+      \textit{\small#3}\\
+
+}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newsavebox{\picbox}
+\newcommand{\profpic}[2]{%
+    \savebox{\picbox}{%
+    \includegraphics[scale=#1]{#2}}% 
+    \tikz\node [draw, circle,%
+    line width=4pt, color=white,% 
+    minimum width=\wd\picbox,minimum height=\ht\picbox,%
+    path picture={ \node at (path picture bounding box.center)% 
+    {\usebox{\picbox}};}]% 
+    {};}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%
+
+\newcommand{\name}{Rifaath Mohamed Ameen}
+\newcommand{\course}{B.E. in Artificial Intelligence and Machine Learning}
+\newcommand{\phone}{176 29958597}
+\newcommand{\emaila}{rifaathm.a@gmail.com}
+\newcommand{\github}{rifaaath}
+\newcommand{\website}{https://example.com}
+\newcommand{\linkedin}{rifaathameen}
+\newcommand{\location}{Erlangen, Bavaria}
+
+
+
+% \begin{document}
+% \fontfamily{cmr}\selectfont
+% %----------PROFILE PIC------------
+% \begin{center}
+%     % \begin{minipage}{0\linewidth}
+%         % \profpic{0.065}{PP}
+%         \profpic{1}{PP New}
+%     % \end{minipage}
+% \end{center}
+
+% %----------HEADING-----------------
+% % \vspace{-5mm}
+% \begin{center}
+%     \LARGE{\textbf{\name}}
+% \end{center}
+% \vspace{-5mm}
+% \begin{center}
+%     \small{\href{https://github.com/\github}{\faGithub \hspace{0.2mm} @\github} |  \href{https://www.linkedin.com/in/\linkedin/}{\faLinkedinSquare \hspace{0.2mm} @\linkedin} | \href{mailto:\emaila}{\faSend \hspace{0.2mm} \emaila} | \faPhone \hspace{0.2mm} +49 \phone | \faMapMarker \hspace{0.2mm} \location}
+% \end{center}
+% \vspace{-3mm}
+
+\begin{document}
+\fontfamily{cmr}\selectfont
+
+%----------HEADING WITH IMAGE ON RIGHT------------
+\begin{center}
+    \begin{minipage}{0.75\linewidth}
+        \raggedright
+        {\LARGE\textbf{\name}}\\
+        \vspace{5mm}
+        \small
+        \begin{tabular}{@{}p{\linewidth}@{}}
+            \href{http://rifaaath.github.io}{\faUser \hspace{0.2mm} rifaaath.github.io} | 
+            \href{https://github.com/\github}{\faGithub \hspace{0.2mm} @\github} | 
+            \href{https://www.linkedin.com/in/\linkedin/}{\faLinkedinSquare \hspace{0.2mm} @\linkedin} \\
+            \href{mailto:\emaila}{\faSend \hspace{0.2mm} \emaila} | 
+            \faPhone \hspace{0.2mm} +49 \phone | 
+            \faMapMarker \hspace{0.2mm} \location
+        \end{tabular}
+        
+        %----------PROFILE-----------------
+        \section*{Profile}
+        Master's student in AI who enjoys learning new things and figuring stuff out along the way. Always up for a challenge, and excited to grow by exploring different ideas and working with others.
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.2\linewidth}
+        \centering
+        \profpic{1}{PP New}
+    \end{minipage}
+\end{center}
+
+
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+        {FAU Erlangen-Nürnberg}{Bavaria, Germany}
+        {M.Sc. in Artificial Intelligence; GPA: 1.4}{Oct. 2024 -- Present}
+    \resumeSubheading
+      {NMAM Institute of Technology}{Karnataka, India}
+      {B.E. in Artificial Intelligence and Machine Learning;  CGPA : 9.71 / 10.00}{Oct. 2020 -- Sep. 2024}
+    % \resumeSubheading
+    %   {Gulf Asian English School}{Sharjah, UAE}
+    %   {Higher Secondary Education;  Grade: 93.4\%}{Apr. 2008 -- Mar. 2020}
+  \resumeSubHeadingListEnd\
+
+      
+%-----------Work Experience-----------------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Arabian Calibration Devices Rep. Co. LLC.}{Sharjah, UAE}
+      {IT Audit Intern}{Jul. 2023 - Aug. 2023}
+      \resumeItemListStart
+        \resumeItem{}
+          {Interviewed 10+ department heads and staffs to identify workflow inefficiencies and proposed AI-based automation solutions}
+        \resumeItem{}
+          {Provided recommendations for enhancing security measures, adopting AI and IoT solutions, and improving overall efficiency.}
+      \resumeItemListEnd
+      
+% --------Multiple Positions Heading------------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+
+    \vspace{2mm}
+    \resumeSubheading
+      {Factweavers Technologies Private Limited}{Kerala, India}
+      {AI Intern – Automation \& Generative AI}{Jun. 2023 - Jul. 2023}
+      \resumeItemListStart
+        \resumeItem{}
+          {Developed an API endpoint utilizing generative AI to automate business processes involving content generation.}
+        \resumeItem{}
+          {Conducted extensive research and testing on multiple pre-trained LLMs to evaluate their performance and limitations.}
+        \resumeItem{}
+          {Enhanced content retrieval efficiency by integrating FAISS indexing, reducing search time by 25\%}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------Research Experience-----------------
+\section{Research \& Projects}
+ \resumeSubHeadingListStart
+  \resumeProject
+   {\textbf{Patent: ACCENDIA - Research Project}}
+   {Aug. 2023 - Apr. 2024}
+    \resumeItemListStart
+        \resumeItem{}
+            {Implemented a multi-document query system using RAG and LangChain with multi-LLM support}
+        \resumeItem{}
+            {\textbf{Patent filed and published} at the Indian Patent Office (Ref No.: 202441036620, Published: 09 May 2024)}
+        \resumeItem{}
+            {Awarded "Best Project of the Year" for the institution}
+    \resumeItemListEnd
+ % \resumeSubHeadingListEnd
+% \vspace{-3mm}
+% \vspace{-2.5mm}
+
+%-----------PROJECTS-----------------
+% \section{Projects}
+% \vspace{-15pt}
+
+% \resumeSubHeadingListStart
+
+	\resumeProject{\textbf{Heart Rate Detection using Motion Magnification}}
+	{\raisebox{0.75pt}{Mar. 2023}}
+    \vspace{-5.5mm}
+      \resumeItemListStart
+        \resumeItem{}
+          {Built a motion magnification system to detect heart rate from video, improving remote health monitoring}
+      \resumeItemListEnd
+ 
+    % \vspace{-15pt}
+    
+    \resumeProject{\textbf{Ship Segmentation and Detection using Satellite Imagery}}
+	{\raisebox{0.75pt}{Nov. 2022}}
+    \vspace{-5.5mm}
+      \resumeItemListStart
+        \resumeItem{}
+          {Automatic detection of ships from satellite image to handle illegal infractions at sea
+.}
+        \resumeItem{}
+          {Built an R-CNN-based model to detect and segment ships in satellite images, aiding in maritime surveillance}
+      \resumeItemListEnd
+      
+    % \vspace{27.85pt}
+
+    \resumeProject{\textbf{IoT Enabled Smart Attendance Tracking using RFID Module}}
+	{\raisebox{0.75pt}{Nov. 2022}}
+    \vspace{-5.5mm}
+      \resumeItemListStart
+        \resumeItem{}
+          {Designed an RFID-based automated attendance system with Arduino, MySQL, and PHP for real-time tracking}
+      \resumeItemListEnd
+      
+    % \vspace{-15pt}
+    
+    \resumeProject{\textbf{Reverse Image Search Using CNN}}
+	{\raisebox{0.75pt}{Nov. 2022}}
+    \vspace{-5.5mm}
+      \resumeItemListStart
+        \resumeItem{}
+          {Developed a CNN-powered search engine using ResNet50 to retrieve visually similar images}
+      \resumeItemListEnd
+      
+    \vspace{-15pt}
+
+\resumeSubHeadingListEnd
+
+\vspace{1mm}
+% \vspace{-2.5mm}
+
+
+%-----------Technical Skills-----------------
+\section{Technical Skills}
+\vspace{0.2mm}
+
+\small{
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+\hspace{10pt}Languages \ & Python, \hspace{2pt}C++, \hspace{2pt}C, \hspace{2pt}Java, \hspace{2pt}R, \hspace{2pt}AppScript\\
+\vspace{2pt}
+\hspace{10pt}Databases & MySQL, \hspace{2pt}PostgreSQL, \hspace{2pt}MongoDB\\
+\vspace{2pt}
+\hspace{10pt}ML/AI & Tensorfow, \hspace{2pt}Scikit-learn, \hspace{2pt}Natural Language Tool Kit, \hspace{2pt}OpenCV \\
+\vspace{2pt}
+\hspace{10pt}Data Analytics & Pandas, \hspace{2pt}Numpy, \hspace{2pt}Matplotlib, \hspace{2pt}Plotly, \hspace{2pt}MySQL, \hspace{2pt}Beautiful Soup\\
+\vspace{2pt}
+\hspace{10pt}Miscellaneous & Git, \hspace{2pt}Selenium, \hspace{2pt}Linux, \hspace{2pt}Bash, \hspace{2pt}PowerShell, \hspace{2pt}FAISS, \hspace{2pt}OpenAI API\\
+% \vspace{2pt}
+\end{tabular}
+}
+
+\vspace{1mm}
+
+%-----------Relevant Coursework-----------------
+% \section{Relevant Coursework}
+
+% \vspace{1mm}
+
+% \small{
+%   {
+%   $\bullet$ Data Structures
+%   \hspace{2mm}
+%   $\bullet$ Design \& Analysis of Algorithms
+%   \hspace{2mm}
+%   $\bullet$ Operating Systems
+%   \hspace{2mm}
+%   $\bullet$ Machine Learning 
+%   \hspace{2mm} \\
+%   \vspace{1mm}
+%   $\bullet$ Database Systems 
+%   \hspace{2mm}
+%   $\bullet$ Deep Learning \& Neural Networks 
+%   \hspace{2mm}
+%   $\bullet$ Computer Networks 
+%   \hspace{2mm}
+%   $\bullet$ Artificial Intelligence 
+%   \vspace{1mm}
+%   $\bullet$ Data Science 
+%   \hspace{2mm}
+%   $\bullet$ OOP
+%   \hspace{2mm}
+%   $\bullet$ Discrete Structures 
+%   \hspace{2mm}
+%   $\bullet$ Pattern and Visual Recognition \\
+%   \vspace{1mm}
+%   $\bullet$ Computer Architecture 
+%   \hspace{2mm}
+%   $\bullet$ Image and Video Processing
+%   \hspace{2mm}
+%   $\bullet$ Big Data Analytics 
+%   \hspace{2mm}
+%   $\bullet$ Optimization Techniques in Machine Learning}\\
+% }
+
+% \vspace{1mm}
+
+%-----------Achievements-----------------
+\section{Achievements}
+
+\vspace{1mm}
+
+\small{
+
+\begin{itemize}
+    \item{\textbf{Selected for the Digital Tech Fellow} program at FAU, one of the \textbf{21} selected from 200 applicants.}
+    \item \textbf{Best Project of the Year} for \textit{ACCENDIA}.
+    \item \textbf{Invited Resource Person} for Faculty Development Program on \textit{LangChain, OpenAI, and the Future of Computer Vision \& ML}.
+    \item \textbf{Finalist} – HackOverflow 1.0 (National Hackathon).
+    \item \textbf{2nd Place} – Byte Battle (ACM NMAMIT \& HackerEarth Hub NMAMIT).
+    \item \textbf{2nd Place} – MATRIX Coding Contest (CSI NMAMIT).
+    \item \textbf{2nd Place} – NMAMIT Circuit 03 Hackathon (ACM NMAMIT \& HackerEarth Hub NMAMIT).
+    \item \textbf{3rd Place} – WKND.HACK (IEEE STB 34551, NMAMIT).
+    \item \textbf{Three-time Winner} – NMAMIT Coding Contest.
+    \item \textbf{Best Working Model} – Science Exhibition, NIMS Dubai.
+\end{itemize}
+
+}
+
+\vspace{1mm}
+
+
+%-----------Leadership-----------------
+\section{Leadership}
+
+\vspace{-10pt}
+
+\begin{multicols}{2}
+    \begin{itemize}
+        \resumeLeadership{People \& Culture Executive}{Oct. 2024 -- Present}{START Nuremberg}
+        \resumeLeadership{Student Placement Overall Head}{Sep. 2023 -- Aug. 2024}{Dept. of Placements \& Training, NMAMIT}
+        \resumeLeadership{Branch Captain}{Sep. 2023 -- Present}{NMAM Institute of Technology, Nitte}
+        \resumeLeadership{Secretary}{Oct. 2022 -- Sep. 2023}{NMAM Institute of Technology, Nitte}
+        \resumeLeadership{Third Year Representative}{Dec. 2022 -- Sep. 2023}{HackerEarth Hub, NMAMIT}
+        \resumeLeadership{House Captain}{2019 -- 2020}{Gulf Asian English School}
+    \end{itemize}
+\end{multicols}
+
+%-----------Community----------------
+% \section{Community}
+
+% \vspace{-10pt}
+% \begin{multicols}{2}
+% 	\begin{itemize}
+% 		\resumeLeadership{Member}{Oct. 2022 – Present}{Hackerearth Hub}
+% 		\resumeLeadership{Microsoft Learn Student Ambassador}{Oct. 2021 – Present}{Microsoft}
+% 		\resumeLeadership{Student Champion}{Nov. 2020 – Present}{Expo 2020}
+% 		\resumeLeadership{AngelHack Student Ambassador}{Jun. 2021 – Present}{AngelHack}
+% 	\end{itemize}
+% \end{multicols}
+
+%-----------Miscellaneous-----------------
+\section{Miscellaneous}
+
+\vspace{1mm}
+
+\small{
+	\textbf{Languages: }{Malayalam (Native), English (C1), German (Beginner)}\\
+  \vspace{1mm}
+	% \textbf{LinkedIn: }{\href{https://linkedin.com/in/rifaathameen}https://linkedin.com/in/rifaathameen\\
+ \vspace{1mm}
+    \textbf{Hobbies: }{Driving, Photography, Trekking, Track-racing}\\
+}
+
+\end{document}
