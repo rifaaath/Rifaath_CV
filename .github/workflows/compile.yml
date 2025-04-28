@@ -1,60 +1,28 @@
-name: LaTex Compiler to PDF
-
-on: 
+name: Release Compiled PDF 
+on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
-
-env:
-  FILE_PATH: /
-  FILE_NAME: resume2
-  RESULT_NAME: Rifaath_CV
+    branches:
+      - master
 
 jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
+
       - name: Get current date
         id: date
-        run: |
-          current_date=$(date +'%Y-%m-%d %H:%M:%S')
-          echo "current execution date $current_date"
-          echo "::set-output name=date::$(date '+%Y%m%d%H%M%S')"
+        run: echo "NOW=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
     
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
-      - name: Compile LaTeX document
+      - name: Compile
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: ${{env.FILE_NAME}}.tex
-          working_directory: ${{env.FILE_PATH}}
-          compiler: xelatex
-          
-      - name: Upload artifact as workflow attachments
-        uses: actions/upload-artifact@v4
-        with:
-          name: result
-          path: ${{env.FILE_PATH}}${{env.FILE_NAME}}.pdf
-          
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{secrets.TOKEN}}
-        with:
-          tag_name: DOC-${{steps.date.outputs.date}}
-          release_name: Release Doc ${{steps.date.outputs.date}}
-          draft: false
-          prerelease: false
+          root_file: resume2.tex
 
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{secrets.TOKEN}}
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{steps.create_release.outputs.upload_url}} 
-          asset_path: ${{env.FILE_PATH}}${{env.FILE_NAME}}.pdf
-          asset_name: ${{env.RESULT_NAME}}.pdf
-          asset_content_type: application/pdf
+          tag_name: ${{ env.NOW }}
+          files: ./Rifaath_CV.pdf
